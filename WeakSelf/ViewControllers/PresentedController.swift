@@ -16,18 +16,14 @@ class PresentedController: UIViewController {
         print("Dismissing Presented Controller")
     }
     
-    func back(completion: (() -> Void)?) {
-        self.dismiss(animated: true, completion: completion)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupLeakyButton()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         generateImages()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupLeakyButton()
     }
     
     func generateImages() {
@@ -45,7 +41,7 @@ class PresentedController: UIViewController {
         printingButton.closure = printer
     }
     
-    func setupNoLeaksButton() {
+    func setupNonLeakyButton() {
         printingButton.closure = { [weak self] in self?.printer() }
     }
 
@@ -54,15 +50,16 @@ class PresentedController: UIViewController {
     }
     
     func printer() {
-        print("This closure was attached to the button")
+        print("Executing the closure attached to the button")
+    }
+    
+    // called by parent
+    func back(completion: (() -> Void)?) {
+        self.dismiss(animated: true, completion: completion)
     }
     
 }
 
 class CustomButton: UIButton {
     var closure: (() -> Void)?
-    
-    func execute() {
-        closure?()
-    }
 }
