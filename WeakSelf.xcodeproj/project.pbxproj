@@ -12,6 +12,10 @@
 		2864A68022A42FB8001937A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2864A67E22A42FB8001937A5 /* Main.storyboard */; };
 		2864A68222A42FB9001937A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2864A68122A42FB9001937A5 /* Assets.xcassets */; };
 		2864A68522A42FB9001937A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2864A68322A42FB9001937A5 /* LaunchScreen.storyboard */; };
+		2864A68D22A43096001937A5 /* PresentedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2864A68C22A43096001937A5 /* PresentedController.swift */; };
+		2883846222AF2FEC000C87D8 /* GlobalAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883846122AF2FEC000C87D8 /* GlobalAlert.swift */; };
+		2883846422AF300F000C87D8 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883846322AF300F000C87D8 /* UIView+Extensions.swift */; };
+		2883846922AF30E3000C87D8 /* ImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883846822AF30E2000C87D8 /* ImageGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		2864A68122A42FB9001937A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2864A68422A42FB9001937A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2864A68622A42FB9001937A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2864A68C22A43096001937A5 /* PresentedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedController.swift; sourceTree = "<group>"; };
+		2883846122AF2FEC000C87D8 /* GlobalAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalAlert.swift; sourceTree = "<group>"; };
+		2883846322AF300F000C87D8 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		2883846822AF30E2000C87D8 /* ImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +63,33 @@
 			isa = PBXGroup;
 			children = (
 				2864A67A22A42FB8001937A5 /* AppDelegate.swift */,
-				2864A67C22A42FB8001937A5 /* ViewController.swift */,
+				2883846722AF30D2000C87D8 /* ViewControllers */,
+				2883846622AF30C8000C87D8 /* Utility */,
 				2864A67E22A42FB8001937A5 /* Main.storyboard */,
 				2864A68122A42FB9001937A5 /* Assets.xcassets */,
 				2864A68322A42FB9001937A5 /* LaunchScreen.storyboard */,
 				2864A68622A42FB9001937A5 /* Info.plist */,
 			);
 			path = WeakSelf;
+			sourceTree = "<group>";
+		};
+		2883846622AF30C8000C87D8 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				2883846822AF30E2000C87D8 /* ImageGenerator.swift */,
+				2883846122AF2FEC000C87D8 /* GlobalAlert.swift */,
+				2883846322AF300F000C87D8 /* UIView+Extensions.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		2883846722AF30D2000C87D8 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2864A67C22A42FB8001937A5 /* ViewController.swift */,
+				2864A68C22A43096001937A5 /* PresentedController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +164,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2864A67D22A42FB8001937A5 /* ViewController.swift in Sources */,
+				2883846922AF30E3000C87D8 /* ImageGenerator.swift in Sources */,
+				2883846222AF2FEC000C87D8 /* GlobalAlert.swift in Sources */,
+				2883846422AF300F000C87D8 /* UIView+Extensions.swift in Sources */,
 				2864A67B22A42FB8001937A5 /* AppDelegate.swift in Sources */,
+				2864A68D22A43096001937A5 /* PresentedController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
