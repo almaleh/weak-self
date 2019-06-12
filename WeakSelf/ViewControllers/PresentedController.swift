@@ -9,7 +9,7 @@
 import UIKit
 
 class PresentedController: UIViewController {
-    @IBOutlet weak var printingButton: CustomButton!
+    @IBOutlet weak var printingButton: CustomButton! // TODO replace by bar button
     
     deinit {
         // if you don't pass here after dismissal, then you have a leak problem
@@ -18,7 +18,9 @@ class PresentedController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLeakyButton()
+        
+        // try different styles when calling this method
+        setupButton(style: .nonLeakyButton)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -27,16 +29,24 @@ class PresentedController: UIViewController {
     }
     
     func generateImages() {
-        ImageGenerator.generateAsyncImages(count: 10) { [weak self] images in
-            guard let self = self else { return }
-            for image in images {
-                let imageView = UIImageView(image: image)
+        let spinner = SpinnerComponent(text: "Applying filters...", parent: self.view)
+        ImageGenerator.generateAsyncImages(count: 10) { images in
+            images.forEach {
+                let imageView = UIImageView(image: $0)
                 self.view.insertSubview(imageView, belowSubview: self.printingButton)
             }
+            spinner.stop()
         }
     }
     
     // MARK: - Button functions
+    func setupButton(style: LeakStyle) {
+        switch style {
+        case .leakyButton: setupLeakyButton()
+        case .nonLeakyButton: setupNonLeakyButton()
+        }
+    }
+    
     func setupLeakyButton() {
         printingButton.closure = printer
     }
@@ -60,6 +70,3 @@ class PresentedController: UIViewController {
     
 }
 
-class CustomButton: UIButton {
-    var closure: (() -> Void)?
-}

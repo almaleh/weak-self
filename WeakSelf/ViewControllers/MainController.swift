@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainController: UIViewController {
     @IBOutlet weak var openButton: CustomButton!
     weak var presentedController: PresentedController?
     
@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func open(_ sender: UIButton) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "vc2") as? PresentedController {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "presentedController") as? PresentedController {
             let navigation = UINavigationController.init(rootViewController: vc)
             let backButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(closePresentedController))
             vc.navigationItem.leftBarButtonItem = backButton
