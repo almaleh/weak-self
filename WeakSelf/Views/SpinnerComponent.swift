@@ -76,7 +76,7 @@ class SpinnerComponent: UIView {
     }
     
     func stop() {
-        let anim = UIViewPropertyAnimator(duration: 0.15, curve: .linear) {
+        let anim = UIViewPropertyAnimator(duration: 0.2, curve: .linear) {
             self.alpha = 0.0
         }
         anim.addCompletion { _ in

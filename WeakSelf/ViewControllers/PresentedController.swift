@@ -33,7 +33,7 @@ class PresentedController: UIViewController {
         ImageGenerator.generateAsyncImages(count: 10) { images in
             images.forEach {
                 let imageView = UIImageView(image: $0)
-                self.view.insertSubview(imageView, belowSubview: self.printingButton)
+                self.view.insertSubview(imageView, belowSubview: spinner)
             }
             spinner.stop()
         }
