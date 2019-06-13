@@ -9,7 +9,7 @@
 import UIKit
 
 class MainController: UIViewController {
-    @IBOutlet weak var openButton: CustomButton!
+    @IBOutlet weak var openButton: UIButton!
     weak var presentedController: PresentedController?
     
     override func viewDidLoad() {

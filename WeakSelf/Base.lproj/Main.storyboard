@@ -36,6 +36,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="22" y="27"/>
         </scene>
         <!--Presented Controller-->
         <scene sceneID="Kch-aG-n3J">
@@ -44,27 +45,9 @@
                     <view key="view" contentMode="scaleToFill" id="We3-pG-JE5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6QG-1O-32e" customClass="CustomButton" customModule="WeakSelf" customModuleProvider="target">
-                                <rect key="frame" x="164.5" y="318.5" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="button:" destination="GYf-p0-5nO" eventType="touchUpInside" id="cgl-OH-ruR"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="6QG-1O-32e" firstAttribute="centerY" secondItem="We3-pG-JE5" secondAttribute="centerY" id="IN8-sY-CyF"/>
-                            <constraint firstItem="6QG-1O-32e" firstAttribute="centerX" secondItem="We3-pG-JE5" secondAttribute="centerX" id="WVU-OE-x41"/>
-                            <constraint firstItem="6QG-1O-32e" firstAttribute="centerY" secondItem="We3-pG-JE5" secondAttribute="centerY" id="Wny-cS-DlM"/>
-                            <constraint firstItem="6QG-1O-32e" firstAttribute="centerX" secondItem="We3-pG-JE5" secondAttribute="centerX" id="YfX-Sw-k5y"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="LHi-4K-rlc"/>
                     </view>
-                    <connections>
-                        <outlet property="printingButton" destination="6QG-1O-32e" id="fSO-tY-PeZ"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3b-l3-3I6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

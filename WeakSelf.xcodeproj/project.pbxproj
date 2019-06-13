@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2816859222B1EAF000C43EC6 /* PresentedController+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2816859122B1EAF000C43EC6 /* PresentedController+Setup.swift */; };
 		2864A67B22A42FB8001937A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2864A67A22A42FB8001937A5 /* AppDelegate.swift */; };
 		2864A67D22A42FB8001937A5 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2864A67C22A42FB8001937A5 /* MainController.swift */; };
 		2864A68022A42FB8001937A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2864A67E22A42FB8001937A5 /* Main.storyboard */; };
@@ -15,13 +16,14 @@
 		2864A68D22A43096001937A5 /* PresentedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2864A68C22A43096001937A5 /* PresentedController.swift */; };
 		28729B2C22B095240005C00E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28729B2B22B095240005C00E /* CustomButton.swift */; };
 		28729B2E22B095600005C00E /* SpinnerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28729B2D22B095600005C00E /* SpinnerComponent.swift */; };
-		28729B3022B0A45E0005C00E /* LeakStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28729B2F22B0A45E0005C00E /* LeakStyle.swift */; };
+		28729B3022B0A45E0005C00E /* LeakScenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28729B2F22B0A45E0005C00E /* LeakScenario.swift */; };
 		2883846222AF2FEC000C87D8 /* GlobalAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883846122AF2FEC000C87D8 /* GlobalAlert.swift */; };
 		2883846422AF300F000C87D8 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883846322AF300F000C87D8 /* UIView+Extensions.swift */; };
 		2883846922AF30E3000C87D8 /* ImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883846822AF30E2000C87D8 /* ImageGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2816859122B1EAF000C43EC6 /* PresentedController+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PresentedController+Setup.swift"; sourceTree = "<group>"; };
 		2864A67722A42FB8001937A5 /* WeakSelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeakSelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2864A67A22A42FB8001937A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2864A67C22A42FB8001937A5 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -32,7 +34,7 @@
 		2864A68C22A43096001937A5 /* PresentedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedController.swift; sourceTree = "<group>"; };
 		28729B2B22B095240005C00E /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		28729B2D22B095600005C00E /* SpinnerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerComponent.swift; sourceTree = "<group>"; };
-		28729B2F22B0A45E0005C00E /* LeakStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeakStyle.swift; sourceTree = "<group>"; };
+		28729B2F22B0A45E0005C00E /* LeakScenario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeakScenario.swift; sourceTree = "<group>"; };
 		2883846122AF2FEC000C87D8 /* GlobalAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalAlert.swift; sourceTree = "<group>"; };
 		2883846322AF300F000C87D8 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		2883846822AF30E2000C87D8 /* ImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGenerator.swift; sourceTree = "<group>"; };
@@ -92,7 +94,7 @@
 		2883846622AF30C8000C87D8 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				28729B2F22B0A45E0005C00E /* LeakStyle.swift */,
+				28729B2F22B0A45E0005C00E /* LeakScenario.swift */,
 				2883846822AF30E2000C87D8 /* ImageGenerator.swift */,
 				2883846122AF2FEC000C87D8 /* GlobalAlert.swift */,
 				2883846322AF300F000C87D8 /* UIView+Extensions.swift */,
@@ -105,6 +107,7 @@
 			children = (
 				2864A67C22A42FB8001937A5 /* MainController.swift */,
 				2864A68C22A43096001937A5 /* PresentedController.swift */,
+				2816859122B1EAF000C43EC6 /* PresentedController+Setup.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -187,7 +190,8 @@
 				2883846422AF300F000C87D8 /* UIView+Extensions.swift in Sources */,
 				28729B2C22B095240005C00E /* CustomButton.swift in Sources */,
 				2864A67B22A42FB8001937A5 /* AppDelegate.swift in Sources */,
-				28729B3022B0A45E0005C00E /* LeakStyle.swift in Sources */,
+				28729B3022B0A45E0005C00E /* LeakScenario.swift in Sources */,
+				2816859222B1EAF000C43EC6 /* PresentedController+Setup.swift in Sources */,
 				2864A68D22A43096001937A5 /* PresentedController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

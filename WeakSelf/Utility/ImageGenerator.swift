@@ -14,7 +14,7 @@ enum ImageGenerator {
     static func generateAsyncImages(count: Int, completion: @escaping ([UIImage]) -> Void) {
         var output = [UIImage]()
         let group = DispatchGroup()
-        for _ in 0...4 {
+        for _ in 0...count {
             group.enter()
             if let image = UIImage(named: "image") {
                 filterImage(image) { image in
