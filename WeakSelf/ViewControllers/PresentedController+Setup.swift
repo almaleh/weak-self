@@ -19,7 +19,7 @@ extension PresentedController {
     func generateImages() {
         navigationItem.leftBarButtonItem?.isEnabled = false
         let spinner = SpinnerComponent(text: "Applying filters...", parent: self.view)
-        ImageGenerator.generateAsyncImages(count: 3) { images in
+        ImageGenerator.generateAsyncImages(count: 2) { images in
             images.forEach {
                 let imageView = UIImageView(image: $0)
                 self.view.insertSubview(imageView, belowSubview: spinner)
@@ -46,6 +46,7 @@ extension PresentedController {
         case .leakyDispatchQueue: leakyDispatchQueue()
         case .nonLeakyDispatchQueue: nonLeakyDispatchQueue()
         case .leakyTimer: leakyTimer()
+        case .leakyAsyncCall: leakyAsyncCall()
         }
     }
     

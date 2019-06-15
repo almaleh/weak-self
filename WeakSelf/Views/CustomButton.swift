@@ -24,6 +24,10 @@ class CustomButton: UIButton {
     }
     
     @objc private func runClosure() {
-        closure?()
+        if let closure = closure {
+            closure()
+        } else {
+            print("No closure has been attached to this button")
+        }
     }
 }

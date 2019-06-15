@@ -12,5 +12,5 @@ enum LeakScenario {
     case leakyButton, nonLeakyButton, higherOrderFunctions, uiViewAnimate
     case leakyViewPropertyAnimator, nonLeakyViewPropertyAnimator1, nonLeakyViewPropertyAnimator2
     case leakyDispatchQueue, nonLeakyDispatchQueue
-    case leakyTimer
+    case leakyTimer, leakyAsyncCall
 }
