@@ -18,9 +18,10 @@ class PresentedController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /* Try the enums with different scenarios when calling this method
-         * The comments below will explain why some scenarios might cause a leak */
-        setup(scenario: .nonLeakyDispatchQueue)
+        /* Try calling this method with differenet enum cases to explore other scenarios
+         * Run the app in each scenario, and try presenting the controller then dismissing it
+         * The comments below will explain why some scenarios are causing a leak and some aren't */
+        setup(scenario: .leakyButton)
     }
     
     deinit {
@@ -97,7 +98,7 @@ class PresentedController: UIViewController {
     
     
     
-    // If we store a Dispatch closure, it escapes, and will leak the controller if we don't use [weak self]
+    // If we store a Dispatch closure, it escapes, and will leak the controller if we do not use [weak self]
     func leakyDispatchQueue() {
         let workItem = DispatchWorkItem { self.view.backgroundColor = .red }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: workItem)
@@ -149,6 +150,41 @@ class PresentedController: UIViewController {
             print(self.view.description)
         }
         self.leakyStorage = task
+    }
+    
+    
+    
+    /* If you execute the URLSession task immediately, but set a long timeout interval, it will delay the deallocation
+     * of your controller until you get a response back. Using [weak self] will prevent that delay
+       Using port 81 on the url simulates a timeout in this case */
+    func delayedAllocAsyncCall() {
+        let url = URL(string: "https://www.google.com:81")!
+        
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 999.0
+        sessionConfig.timeoutIntervalForResource = 999.0
+        let session = URLSession(configuration: sessionConfig)
+        
+        let task = session.downloadTask(with: url) { localURL, _, error in
+            guard let localURL = localURL else { return }
+            let contents = (try? String(contentsOf: localURL)) ?? "No contents"
+            print(contents)
+            print(self.view.description)
+        }
+        task.resume()
+    }
+    
+    
+    
+    /* Although this dispatch call is executed immediately, there is a sempaphore blocking the
+     * closure from returning, with no timeout. As a result, this will lead to a memory leak, since self is
+     * referenced without the 'weak' or 'unowned' keyword */
+    func delayedAllocSemaphore() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            let semaphore = DispatchSemaphore(value: 0)
+            print(self.view.description)
+            _ = semaphore.wait(timeout: .now() + 99.0)
+        }
     }
     
     

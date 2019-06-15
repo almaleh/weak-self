@@ -36,8 +36,8 @@ enum GlobalAlert {
                 return ("No Leaks Detected 🎉",
                         "Congratulations! Your closures didn't leak!")
             case .leaked:
-                return ("You have leaked 💦",
-                        "One of your closures has leaked!")
+                return ("Controller memory was not freed 💦",
+                        "One of your closures may have caused a memory leaked or a delayed deallocation!")
             }
         }
     }

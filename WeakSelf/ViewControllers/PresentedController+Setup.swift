@@ -47,6 +47,8 @@ extension PresentedController {
         case .nonLeakyDispatchQueue: nonLeakyDispatchQueue()
         case .leakyTimer: leakyTimer()
         case .leakyAsyncCall: leakyAsyncCall()
+        case .delayedAllocAsyncCall: delayedAllocAsyncCall()
+        case .delayedAllocSemaphore: delayedAllocSemaphore()
         }
     }
     
