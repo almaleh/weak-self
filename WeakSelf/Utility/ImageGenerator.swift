@@ -17,7 +17,7 @@ enum ImageGenerator {
         for _ in 0...count {
             group.enter()
             if let image = UIImage(named: "image") {
-                filterImage(image) { image in
+                filterImageAsync(image) { image in
                     output.append(image)
                     group.leave()
                 }
@@ -28,7 +28,7 @@ enum ImageGenerator {
         }
     }
     
-    private static func filterImage(_ image: UIImage, completion: @escaping (UIImage) -> Void) {
+    private static func filterImageAsync(_ image: UIImage, completion: @escaping (UIImage) -> Void) {
         DispatchQueue.global(qos: .userInteractive).async {
             
             let scale = UIScreen.main.scale
@@ -49,13 +49,43 @@ enum ImageGenerator {
         }
     }
     
+    static func generateSyncImages(count: Int) -> [UIImage] {
+        var output = [UIImage]()
+        for _ in 0...count {
+            if let image = UIImage(named: "image") {
+                let image = filterImageSync(image)
+                output.append(image)
+            }
+        }
+        return output
+    }
+    
+    private static func filterImageSync(_ image: UIImage) -> UIImage {
+        let scale = UIScreen.main.scale
+        let orientation = image.imageOrientation
+        let context = CIContext()
+        let filterName = getRandomFilter
+        let filter = CIFilter(name: filterName)
+        let ciImage = CIImage(image: image)
+        
+        filter?.setValue(ciImage, forKey: kCIInputImageKey)
+        
+        guard let filteredCIImage = filter?.outputImage else { return image }
+        
+        if let cgimg = context.createCGImage(filteredCIImage, from: filteredCIImage.extent) {
+            let processedImage = UIImage(cgImage: cgimg, scale: scale, orientation: orientation)
+            return processedImage
+        }
+        return image
+    }
+    
     private static var getRandomFilter: String {
         return filters.shuffled()[0]
     }
     
     private static var filters = [
         "CIBumpDistortion",
-        "CIGaussianBlur",
+//        "CIGaussianBlur", // this is too slow on the simulator
         "CIPixellate",
         "CISepiaTone",
         "CITwirlDistortion",

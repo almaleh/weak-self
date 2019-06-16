@@ -12,6 +12,14 @@ class MainController: UIViewController {
     @IBOutlet weak var openButton: UIButton!
     weak var presentedController: PresentedController?
     
+    /*********
+     
+     Not much to see here :)
+     
+     Check out the leak scenarios in PresentedController.swift
+     
+     *********/
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

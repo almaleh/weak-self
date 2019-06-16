@@ -22,13 +22,8 @@ class PresentedController: UIViewController {
          * Run the app in each scenario, and try presenting the controller then dismissing it
          * The comments below will explain why some scenarios are causing a leak and some aren't */
         setup(scenario: .leakyButton)
+        
     }
-    
-    deinit {
-        // Not passing here after dismissal means we have a leak problem
-        print("Dismissing Presented Controller")
-    }
-    
     
     
     // MARK: - Leak Scenarios
@@ -124,15 +119,15 @@ class PresentedController: UIViewController {
     
     
     
-    /* This timer will leak the controller because
+    /* This timer will prevent the controller from deallocating because:
      * 1. it repeats
-     * 2. [weak self] is not used
-     * If either of those conditions is false, it wouldn't leak */
+     * 2. self is referenced in the closure without using [weak self]
+     * If either of those conditions is false, it wouldn't cause issues */
     func leakyTimer() {
-        let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { timer in
+        let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
             let currentColor = self.view.backgroundColor
             self.view.backgroundColor = currentColor == .red ? .blue : .red
-        })
+        }
         timer.tolerance = 0.5
         RunLoop.current.add(timer, forMode: RunLoop.Mode.common)
     }
@@ -155,8 +150,8 @@ class PresentedController: UIViewController {
     
     
     /* If you execute the URLSession task immediately, but set a long timeout interval, it will delay the deallocation
-     * of your controller until you get a response back. Using [weak self] will prevent that delay
-       Using port 81 on the url simulates a timeout in this case */
+     * of your controller until you get a response back. Using [weak self] will prevent that delay.
+     * Note: Using port 81 on the url helps simulate a request timeout */
     func delayedAllocAsyncCall() {
         let url = URL(string: "https://www.google.com:81")!
         
@@ -176,8 +171,8 @@ class PresentedController: UIViewController {
     
     
     
-    /* Although this dispatch call is executed immediately, there is a sempaphore blocking the
-     * closure from returning, with no timeout. As a result, this will lead to a memory leak, since self is
+    /* Although this dispatch call is executed immediately, there is a sempaphore blocking the closure from returning,
+     * with a long timeout. This doesn't cause a leak, but will cause a delayed deallocation of 'self' since self is
      * referenced without the 'weak' or 'unowned' keyword */
     func delayedAllocSemaphore() {
         DispatchQueue.global(qos: .userInitiated).async {
@@ -192,4 +187,12 @@ class PresentedController: UIViewController {
     func printer() {
         print("Executing the closure attached to the button")
     }
+    
+    
+    deinit {
+        // Not passing here after dismissal means we have a leak problem
+        print("Dismissing Presented Controller")
+    }
+    
+    
 }

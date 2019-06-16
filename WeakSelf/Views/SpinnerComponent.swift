@@ -70,18 +70,12 @@ class SpinnerComponent: UIView {
     // MARK: - Animations
     
     func show() {
-        UIViewPropertyAnimator(duration: 0.2, curve: .linear) {
-            self.alpha = 1.0
-        }.startAnimation()
+        UIViewPropertyAnimator(duration: 0.2, curve: .linear) { self.alpha = 1.0 }.startAnimation()
     }
     
     func stop() {
-        let anim = UIViewPropertyAnimator(duration: 0.2, curve: .linear) {
-            self.alpha = 0.0
-        }
-        anim.addCompletion { _ in
-            self.removeFromSuperview()
-        }
+        let anim = UIViewPropertyAnimator(duration: 0.2, curve: .linear) { self.alpha = 0.0 }
+        anim.addCompletion { _ in self.removeFromSuperview() }
         anim.startAnimation()
     }
     
