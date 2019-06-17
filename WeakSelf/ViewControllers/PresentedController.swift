@@ -150,8 +150,8 @@ class PresentedController: UIViewController {
     
     
     /* If you execute the URLSession task immediately, but set a long timeout interval, it will delay the deallocation
-     * of your controller until you get a response back. Using [weak self] will prevent that delay.
-     * Note: Using port 81 on the url helps simulate a request timeout */
+     * of your controller until you either cancel the task, get a response back, or timeout. Using [weak self] will
+     * prevent that delay. Note: Using port 81 on the url helps simulate a request timeout */
     func delayedAllocAsyncCall() {
         let url = URL(string: "https://www.google.com:81")!
         
