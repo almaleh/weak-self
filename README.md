@@ -1,7 +1,7 @@
 # weak-self
 This app demonstrates when [weak self] is needed in Swift to avoid strong reference cycles, and when it is not needed. 
 
-The app accompanies an article on this topic that is [available here](https://medium.com/@almalehdev/a778bec505ef). 
+The app accompanies an article on this topic that is [available here](https://medium.com/@almalehdev/you-dont-always-need-weak-self-a778bec505ef). 
 
 ## Using the app
 
