@@ -36,6 +36,8 @@ extension PresentedController {
         case .leakyAsyncCall: leakyAsyncCall()
         case .delayedAllocAsyncCall: delayedAllocAsyncCall()
         case .delayedAllocSemaphore: delayedAllocSemaphore()
+        case .savedClosure: savedClosure()
+        case .unsavedClosure: unsavedClosure()
         }
     }
     

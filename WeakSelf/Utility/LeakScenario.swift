@@ -9,8 +9,11 @@
 import Foundation
 
 enum LeakScenario {
-    case leakyButton, nonLeakyButton, higherOrderFunctions, uiViewAnimate
+    case higherOrderFunctions, uiViewAnimate
     case leakyViewPropertyAnimator, nonLeakyViewPropertyAnimator1, nonLeakyViewPropertyAnimator2
     case leakyDispatchQueue, nonLeakyDispatchQueue
-    case leakyTimer, leakyAsyncCall, delayedAllocAsyncCall, delayedAllocSemaphore
+    case leakyTimer, leakyAsyncCall
+    case savedClosure, unsavedClosure
+    case delayedAllocAsyncCall, delayedAllocSemaphore
+    case leakyButton, nonLeakyButton
 }

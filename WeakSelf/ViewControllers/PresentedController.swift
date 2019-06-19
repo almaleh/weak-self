@@ -13,7 +13,7 @@ class PresentedController: UIViewController {
     var printingButton: CustomButton?
     
     // this property stores escaping closures to demonstrate leaks
-    var leakyStorage: Any?
+    var closureStorage: Any?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,26 +21,13 @@ class PresentedController: UIViewController {
         /* Try calling this method with differenet enum cases to explore other scenarios
          * Run the app in each scenario, and try presenting the controller then dismissing it
          * The comments below will explain why some scenarios are causing a leak and some aren't */
-        setup(scenario: .leakyButton)
-        
+        setup(scenario: .uiViewAnimate)
     }
+    
+    
     
     
     // MARK: - Leak Scenarios
-    
-    /* It can be tempting to pass a function directly to the closure property, but it will leak the entire controller!
-     * Reason: self is implicitly captured by the closure, and self owns the button which owns the closure
-     * thus creating a reference cycle */
-    func setupLeakyButton() {
-        printingButton?.closure = printer
-    }
-    
-    
-    
-    // [weak self] is needed to break the cycle, even if it makes for uglier syntax
-    func setupNonLeakyButton() {
-        printingButton?.closure = { [weak self] in self?.printer() }
-    }
     
     
     
@@ -67,7 +54,7 @@ class PresentedController: UIViewController {
         // color won't actually change, because we aren't executing the animation
         let anim = UIViewPropertyAnimator(duration: 2.0, curve: .linear) { self.view.backgroundColor = .red }
         anim.addCompletion { _ in self.view.backgroundColor = .white }
-        self.leakyStorage = anim
+        self.closureStorage = anim
     }
     
     
@@ -79,7 +66,7 @@ class PresentedController: UIViewController {
         // color won't actually change, because we aren't executing the animation
         let anim = UIViewPropertyAnimator(duration: 2.0, curve: .linear) { view?.backgroundColor = .red }
         anim.addCompletion { _ in view?.backgroundColor = .white }
-        self.leakyStorage = anim
+        self.closureStorage = anim
     }
     
     
@@ -97,7 +84,7 @@ class PresentedController: UIViewController {
     func leakyDispatchQueue() {
         let workItem = DispatchWorkItem { self.view.backgroundColor = .red }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: workItem)
-        self.leakyStorage = workItem
+        self.closureStorage = workItem
     }
     
     
@@ -144,7 +131,7 @@ class PresentedController: UIViewController {
             print(contents)
             print(self.view.description)
         }
-        self.leakyStorage = task
+        self.closureStorage = task
     }
     
     
@@ -167,6 +154,54 @@ class PresentedController: UIViewController {
             print(self.view.description)
         }
         task.resume()
+    }
+    
+    
+    
+    /* A strong reference cycle is created here since the closure and 'self' reference each other without using
+     * [weak self]. Note that '@escaping' is required here, because we are saving the closure for later use.
+     * Also note that optional closures such as (() -> Void)? are implicitly escaping (do not require the keyword) */
+    func savedClosure() {
+        
+        func run(closure: @escaping () -> Void) {
+            closure()
+            self.closureStorage = closure // 'self' stores the closure
+        }
+        
+        run {
+            self.view.backgroundColor = .red // the closure references 'self'
+        }
+    }
+    
+    
+    
+    /* [weak self] is not required here, because the closure is not escaping (not stored anywhere).
+     * Note that '@escaping' is not required here */
+    func unsavedClosure() {
+        
+        func run(closure: () -> Void) {
+            closure()
+        }
+        
+        run {
+            self.view.backgroundColor = .red // the closure references 'self'
+        }
+    }
+    
+    
+    
+    /* It can be tempting to pass a function directly to the closure property, but it will leak the entire controller!
+     * Reason: self is implicitly captured by the closure, and self owns the button which owns the closure
+     * thus creating a reference cycle */
+    func setupLeakyButton() {
+        printingButton?.closure = printer
+    }
+    
+    
+    
+    // [weak self] is needed to break the cycle, even if it makes for uglier syntax
+    func setupNonLeakyButton() {
+        printingButton?.closure = { [weak self] in self?.printer() }
     }
     
     
