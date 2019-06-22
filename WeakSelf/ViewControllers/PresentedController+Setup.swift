@@ -13,7 +13,7 @@ extension PresentedController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        generateImages()
+        generateImages(alpha: 0.0) // keep images invisible
     }
     
     func setup(scenario: LeakScenario) {
@@ -46,7 +46,7 @@ extension PresentedController {
         self.dismiss(animated: true, completion: completion)
     }
     
-    func generateImages() {
+    func generateImages(alpha: CGFloat) {
         navigationItem.leftBarButtonItem?.isEnabled = false
         let spinner = SpinnerComponent(text: "Applying filters...", parent: self.view)
         ImageGenerator.generateAsyncImages(count: 2) { images in
@@ -56,12 +56,9 @@ extension PresentedController {
                 imageView.center.x += CGFloat.random(in: 1...100)
                 imageView.center.y += CGFloat.random(in: 1...100)
                 imageView.transform = CGAffineTransform(scaleX: scale, y: scale)
+                imageView.alpha = alpha
                 self.view.insertSubview(imageView, belowSubview: spinner)
             }
-            let overlay = UIView(frame: self.view.frame)
-            overlay.backgroundColor = .black
-            overlay.alpha = 0.3
-            self.view.insertSubview(overlay, belowSubview: spinner)
             self.navigationItem.leftBarButtonItem?.isEnabled = true
             spinner.stop()
         }
