@@ -18,7 +18,7 @@ class PresentedController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /* Try calling this method with differenet enum cases to explore other scenarios
+        /* Try calling this method with different enum cases to explore other scenarios
          * Run the app in each scenario, and try presenting the controller then dismissing it
          * The comments below will explain why some scenarios are causing a leak and some aren't */
         setup(scenario: .uiViewAnimate)
