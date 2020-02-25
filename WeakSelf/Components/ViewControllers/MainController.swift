@@ -29,6 +29,7 @@ class MainController: UIViewController {
             let navigation = UINavigationController.init(rootViewController: vc)
             let backButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(closePresentedController))
             vc.navigationItem.leftBarButtonItem = backButton
+            vc.isModalInPresentation = true
             present(navigation, animated: true)
             self.presentedController = vc
         }

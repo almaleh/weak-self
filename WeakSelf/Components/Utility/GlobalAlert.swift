@@ -11,7 +11,8 @@ import UIKit
 enum GlobalAlert {
     
     static func present(_ state: State) {
-        guard let root = UIApplication.shared.keyWindow?.rootViewController else { return }
+        
+        guard let root = UIApplication.shared.windows.first?.rootViewController else { return }
         
         let alert = UIAlertController(title: state.contents.title, message: state.contents.message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default))

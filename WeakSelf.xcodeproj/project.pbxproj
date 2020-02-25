@@ -70,13 +70,9 @@
 		2864A67922A42FB8001937A5 /* WeakSelf */ = {
 			isa = PBXGroup;
 			children = (
-				2864A67A22A42FB8001937A5 /* AppDelegate.swift */,
-				2883846722AF30D2000C87D8 /* ViewControllers */,
-				28729B2A22B095160005C00E /* Views */,
-				2883846622AF30C8000C87D8 /* Utility */,
-				2864A67E22A42FB8001937A5 /* Main.storyboard */,
+				2864A68C22A43096001937A5 /* PresentedController.swift */,
+				287B2E5D24055CBB00234927 /* Components */,
 				2864A68122A42FB9001937A5 /* Assets.xcassets */,
-				2864A68322A42FB9001937A5 /* LaunchScreen.storyboard */,
 				2864A68622A42FB9001937A5 /* Info.plist */,
 			);
 			path = WeakSelf;
@@ -89,6 +85,27 @@
 				28729B2D22B095600005C00E /* SpinnerComponent.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		287B2E5D24055CBB00234927 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2864A67A22A42FB8001937A5 /* AppDelegate.swift */,
+				2883846722AF30D2000C87D8 /* ViewControllers */,
+				28729B2A22B095160005C00E /* Views */,
+				2883846622AF30C8000C87D8 /* Utility */,
+				287B2E5E24055CDB00234927 /* Storyboards */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		287B2E5E24055CDB00234927 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				2864A68322A42FB9001937A5 /* LaunchScreen.storyboard */,
+				2864A67E22A42FB8001937A5 /* Main.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		2883846622AF30C8000C87D8 /* Utility */ = {
@@ -106,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				2864A67C22A42FB8001937A5 /* MainController.swift */,
-				2864A68C22A43096001937A5 /* PresentedController.swift */,
 				2816859122B1EAF000C43EC6 /* PresentedController+Setup.swift */,
 			);
 			path = ViewControllers;
@@ -341,6 +357,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = WeakSelf/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -359,6 +376,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = WeakSelf/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
