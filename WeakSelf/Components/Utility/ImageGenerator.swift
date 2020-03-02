@@ -84,12 +84,12 @@ enum ImageGenerator {
     }
     
     private static var filters = [
-        "CIBumpDistortion",
+//        "CIBumpDistortion",
 //        "CIGaussianBlur", // this is too slow on the simulator
-        "CIPixellate",
-        "CISepiaTone",
-        "CITwirlDistortion",
-        "CIUnsharpMask",
+//        "CIPixellate",
+//        "CISepiaTone",
+//        "CITwirlDistortion",
+//        "CIUnsharpMask",
         "CIVignette"
     ]
 }

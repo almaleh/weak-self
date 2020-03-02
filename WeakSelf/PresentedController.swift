@@ -21,7 +21,7 @@ class PresentedController: UIViewController {
         /* Try calling this method with different enum cases to explore other scenarios
          * Run the app in each scenario, and try presenting the controller then dismissing it
          * The comments below will explain why some scenarios are causing a leak and some aren't */
-        setup(scenario: .uiViewAnimate)
+        setup(scenario: .leakyNestedClosure)
     }
     
     
@@ -216,6 +216,22 @@ class PresentedController: UIViewController {
     }
     
     
+    
+    
+    /* This nested closure leaks despite the use of [weak self], because the escaping closure associated with the
+     * Dispatch Work Item creates a strong reference to `self` with the [weak self] keyword of its nested
+     * closure. Therefore we need to move [weak self] up one level, to the outermost closure, to avoid the leak */
+    func leakyNestedClosure() {
+        
+        let workItem = DispatchWorkItem {
+            UIView.animate(withDuration: 1.0) { [weak self] in
+                self?.view.backgroundColor = .red
+            }
+        }
+        
+        self.closureStorage = workItem
+        DispatchQueue.main.async(execute: workItem)
+    }
     
     func printer() {
         print("Executing the closure attached to the button")

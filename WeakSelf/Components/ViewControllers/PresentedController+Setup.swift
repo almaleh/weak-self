@@ -38,6 +38,7 @@ extension PresentedController {
         case .delayedAllocSemaphore: delayedAllocSemaphore()
         case .savedClosure: savedClosure()
         case .unsavedClosure: unsavedClosure()
+        case .leakyNestedClosure: leakyNestedClosure()
         }
     }
     
@@ -49,7 +50,7 @@ extension PresentedController {
     func generateImages(alpha: CGFloat) {
         navigationItem.leftBarButtonItem?.isEnabled = false
         let spinner = SpinnerComponent(text: "Applying filters...", parent: self.view)
-        ImageGenerator.generateAsyncImages(count: 2) { images in
+        ImageGenerator.generateAsyncImages(count: 5) { images in
             images.forEach {
                 let imageView = UIImageView(image: $0)
                 let scale = CGFloat.random(in: 1...1.5)
